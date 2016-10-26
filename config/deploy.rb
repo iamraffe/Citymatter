@@ -1,7 +1,7 @@
 # Change these
-server '138.68.11.8', port: 20, roles: [:web, :app, :db], primary: true
+server '138.68.11.8', port: 22, roles: [:web, :app, :db], primary: true
 
-set :repo_url,        'git@example.com:iamraffe/citymatter.git'
+set :repo_url,        'git@github.com:iamraffe/citymatter.git'
 set :application,     'citymatter'
 set :user,            'dev'
 set :puma_threads,    [4, 16]
@@ -22,6 +22,16 @@ set :ssh_options,     { forward_agent: true, user: fetch(:user), keys: %w(~/.ssh
 set :puma_preload_app, true
 set :puma_worker_timeout, nil
 set :puma_init_active_record, true  # Change to false when not using ActiveRecord
+
+set :rbenv_type, :user # or :system, depends on your rbenv setup
+set :rbenv_ruby, '2.3.1'
+
+# in case you want to set ruby version from the file:
+# set :rbenv_ruby, File.read('.ruby-version').strip
+
+set :rbenv_prefix, "RBENV_ROOT=#{fetch(:rbenv_path)} RBENV_VERSION=#{fetch(:rbenv_ruby)} #{fetch(:rbenv_path)}/bin/rbenv exec"
+set :rbenv_map_bins, %w{rake gem bundle ruby rails}
+set :rbenv_roles, :all # default value
 
 ## Defaults:
 # set :scm,           :git
