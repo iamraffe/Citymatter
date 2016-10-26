@@ -81,5 +81,5 @@ test:
 production:
   <<: *default
   database: citymatter_production
-  username: citymatter
+  username: dev
   password: <%= ENV['CITYMATTER_DATABASE_PASSWORD'] %>
