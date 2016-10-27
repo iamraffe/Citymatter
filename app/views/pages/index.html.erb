@@ -1,1 +1,6 @@
-<%= @coordenates.to_json %>
+<%= @data %>
+<form id="dropzone" class="dropzone container-full" action="/crimes" method="post" enctype="multipart/form-data">
+  <section class="col-xs-2 col-xs-offset-5">
+    <span class="dz-message">Upload file</span>
+  </section>
+</form>

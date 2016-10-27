@@ -1,9 +1,9 @@
 class Api::V1::CrimesController < ApplicationController
   def index
-    @crimes = Crime.page(params[:page]).per(2)
+    @crimes = Crime.page(params[:page]).per(15)
     render json: {
-                    crimes: @crimes,  pagination: { 
-                                          per_page: 2,
+                    crimes: @crimes,  pagination: {
+                                          per_page: 15,
                                           total_pages: @crimes.total_pages,
                                           total_objects: @crimes.total_count,
                                           links: [
@@ -13,9 +13,8 @@ class Api::V1::CrimesController < ApplicationController
                                           ]
                                         }
                                       }
-                                          
   end
-  
+
   def categories
     Crime.group(:category).count.map{|key, value| {category: key, count: value} }
   end
